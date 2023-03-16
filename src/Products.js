@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState();
+  const history = useNavigate();
 
   useEffect(() => {
     // fetch("/config").then(async (r) => {
-    fetch("mido/products").then(async (r) => {
+    fetch("http://localhost:3000/mido/products").then(async (r) => {
       const { products } = await r.json();
       console.log("first", products);
       setProducts(products);
     });
   }, []);
+
+  const handleBuy = (id) => {
+    history(`/payment/${id}`);
+  };
 
   return (
     <div
@@ -35,7 +41,7 @@ const Products = () => {
                 </h3>
                 <br />
               </div>
-              <button>Buy now</button>
+              <button onClick={() => handleBuy(product?.id)}>Buy now</button>
             </div>
           );
         })}

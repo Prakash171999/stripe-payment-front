@@ -12,7 +12,8 @@ body {
   font-family: "Raleway";
   font-size: 1.2em;
   color: var(--dark-terminal-color);
-  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 main {
